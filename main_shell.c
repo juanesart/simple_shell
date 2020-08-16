@@ -1,100 +1,11 @@
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h> /*Exit*/
-#include <sys/wait.h>/*wait*/
-#include <string.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include "holberton.h"
 
-void free_list(list_t *head)
+
+
+
+int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **env)
 {
-	if (head)
-	{
-		free_list(head->next);
-		if (head->str)
-			free(head->str);
-		free(head);
-	}
-}
-
-size_t print_list(const list_t *h)
-{
-	int count = 0;
-
-	while (h)
-	{
-		if (h->str == NULL)
-		{
-			printf("[0] (nil)\n");
-		}
-		else
-		{
-		printf("[%d] %s\n", h->len, h->str);
-		}
-		count++;
-		h = h->next;
-	}
-	return (count);
-}
-
-list_t *add_node2(list_t **head, const char *str)
-{
-	list_t *add;
-
-	add = malloc(sizeof(list_t));
-	if (add == NULL)
-		return (NULL);
-	add->str = strdup(str);
-	add->len = strlen(str);
-	add->next = *head;
-	*head = add;
-
-	return (add);
-}
-
-list_t *add_node(list_t ***head, const char *str)
-{
-	list_t *add;
-
-	add = malloc(sizeof(list_t));
-	if (add == NULL)
-		return (NULL);
-	add->str = strdup(str);
-	add->len = strlen(str);
-	add->next = **head;
-	**head = add;
-
-	return (add);
-}
-
-char *split(char *name, list_t **head)
-{
-	char *token = NULL;
-	char *dup;
-	size_t i;
-	char *args = NULL;
-	dup = malloc(strlen(name));
-	if (dup == NULL)
-		return (0);
-	strcpy(dup, name);
-	token = strtok(dup, "PATH=: \t");
-	i = 0;
-	while (token)
-	{
-		args = strdup(token);
-		strcat(args, "/");
-		token = strtok(NULL, ": \t");
-		add_node(&head, args);
-		i++;
-	}
-free(dup);
-return (args);
-}
-
-int main(int ac, char **av, char **env)
-{
+	
 	char *string = NULL; /*variabe to get command keyboard*/
 	size_t strsize = 0; /*variabe to getline int size type*/
 	pid_t child_pid; /*variable to fork*/
@@ -216,7 +127,6 @@ int main(int ac, char **av, char **env)
 		h = hreset;
 		printf("$ ");
 	}
-	/* free(auxt); */
 	free(string);
 	return (0);
 }
