@@ -21,20 +21,11 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 	size_t strsize = 0; /*variabe to getline int size type*/
 	pid_t child_pid; /*variable to fork*/
 	int status, sw, aw = 0;  /*variable to wait*/
-	char *aux, *temp, **savingtok = NULL, *string = NULL, *path = "PATH=";
+	char *aux, *temp, **savingtok = NULL, *string = NULL;
 	struct stat st;
-	unsigned int i = 0, j = 0;
 	list_t *h = NULL, *auxh = NULL, *hreset = NULL;
 
-	while (env[i] != NULL)
-	{
-		if (*env[i] == path[j])
-		{
-			split(env[i], &h);
-			break;
-		}
-		i++;
-	}
+	h = _getenv(env, h);
 	printf("$ ");
 	while (getline(&string, &strsize, stdin) != EOF)
 	{
