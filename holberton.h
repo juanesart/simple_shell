@@ -31,6 +31,10 @@ list_t *add_node(list_t ***head, const char *str);
 char *split(char *name, list_t **head);
 void free_list(list_t *head);
 list_t *add_node2(list_t **head, const char *str);
-
+void _free(char **string);
+char *_strcat(char *dest, char *src);
+char *_strncpy(char *dest, char *src, int n);
+int _strcmp(char *s1, char *s2);
+char *_strtok(char *str, const char *delim);
 
 #endif

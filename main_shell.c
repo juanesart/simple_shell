@@ -1,6 +1,18 @@
 #include "holberton.h"
 
+void _free(char **string)
+{
+	size_t i = 0;
 
+	if (string == NULL)
+		return;
+	while (string[i])
+	{
+		free(string[i]);
+		i++;
+	}
+	free(string);
+}
 
 
 int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **env)
@@ -35,11 +47,11 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 	printf("$ ");
 	while (getline(&string, &strsize, stdin) != EOF)
 	{
-                aux = strtok(string, "\n");
-		test[0] = (straux = strtok(string, " \n"));
+                aux = _strtok(string, "\n");
+		test[0] = (straux = _strtok(string, " \n"));
                 while (straux != NULL)
                 {
-                        test[k] = (straux = strtok(NULL, " \n"));
+                        test[k] = (straux = _strtok(NULL, " \n"));
                         k++;
                 }
 		/* straux = strdup(aux);
@@ -70,7 +82,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 				else
 				{
 					/* auxt = malloc(sizeof(strcat(temp, aux))); */
-					*auxt = strcat(temp, test[0]);
+					*auxt = _strcat(temp, test[0]);
                                         if (test[1] != NULL)
                                                 auxt[1] = test[1];
                                         else
@@ -94,7 +106,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 				if (child_pid == -1)
 				{
 					perror("child: error");
-					exit (1);
+					exit (EXIT_FAILURE);
 				}
 				if (child_pid == 0)
 				{
@@ -102,7 +114,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 					if (execve(auxt[0], auxt, NULL) == -1)
 					{
 						perror("execve: error");
-						exit(1);
+						exit(EXIT_FAILURE);
 					}
 				}
 				else
@@ -121,12 +133,18 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 			h = h->next;
 			auxh = auxh->next;
 		}
+                /* free_list(auxh); */
                 k = 1;
 		aw = 0, sw = 0;
 		sw = 0;
 		h = hreset;
 		printf("$ ");
 	}
+        /* _free(auxt);
+        _free(test); */
+        free(temp);
+        /* free_list(hreset); */
+        free_list(h);
 	free(string);
 	return (0);
 }
