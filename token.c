@@ -17,19 +17,19 @@ char** tokens(char *string, char *temp)
 	        tmp = strcat(temp, string);
                 token = _strdup(tmp);
         }
-	tmp = strtok(tmp, " \n\t");
+	tmp = _strtok(tmp, " \n\t");
 	while (tmp != NULL)
 	{
 		ntok++;
-		tmp = strtok(NULL, " \n\t");
+		tmp = _strtok(NULL, " \n\t");
 	}
 	savingtok = (char **) malloc((ntok * sizeof(char *) + 1));
-	token = strtok(token, " \n\t");
+	token = _strtok(token, " \n\t");
 	while (token != NULL)
 	{
 		savingtok[i] = _strdup(token);
 		i++;
-		token = strtok(NULL, " \n\t");
+		token = _strtok(NULL, " \n\t");
 	}
 	savingtok[ntok + 1] = '\0';
 	free(token);

@@ -18,7 +18,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 {
 	size_t strsize = 0; /*variabe to getline int size type*/
 	pid_t child_pid; /*variable to fork*/
-	int status, sw, aw = 0;  /*variable to wait*/
+	int sw, aw = 0;  /*variable to wait*/
 	char *aux, *temp, **savingtok = NULL, *string = NULL;
 	struct stat st;
 	list_t *h = NULL, *auxh = NULL, *hreset = NULL;
@@ -49,23 +49,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 				if (stat(savingtok[0], &st) == 0)
 				{
 					child_pid = fork();
-					if (child_pid == -1)
-					{
-						perror("child: error");
-						exit (EXIT_FAILURE);
-					}
-					if (child_pid == 0)
-					{
-						if (execve(savingtok[0], savingtok, NULL) == -1)
-						{
-							perror("execve: error");
-							exit(EXIT_FAILURE);
-						}
-					}
-					else
-					{
-						wait(&status);
-					}
+                                        fork_process(child_pid, savingtok);
 					sw = 1;
 				}
 				else if (h->next == NULL)
@@ -84,12 +68,8 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 		h = hreset;
 		printf("$ ");
 	}
-	/* _free(auxt);
-	_free(test); */
-	/* free(temp); */
-	/* free_list(hreset); */
-	free_list(h);
-	free_list(auxh);
+        _free(savingtok);
+        free_list(h);
 	free(string);
 	return (0);
 }

@@ -82,30 +82,24 @@ char *_strtok(char *str, const char *delim)
 
 char *_strdup(const char *str)
 {
-	unsigned int len = 0, len2 = 0;
-	char *str2;
+	int i = 0, j;
+	char *string;
 
-	if (!str)
+	if (str == NULL)
+		return (0);
+	while (*(str + i) != '\0')
 	{
-		return (NULL);
-	}
-	while (str[len])
-	{
-		len++;
+		i++;
 	}
 
-	str2 = malloc((len + 1) * sizeof(char));
+	string = malloc(i + 1);
 
-	if (!str2)
-	{
-		return (NULL);
-	}
+	if (string == 0)
+		return (0);
 
-	while (len2 < len)
+	for (j = 0; j < i; j++)
 	{
-		str2[len2] = str[len2];
-		len2++;
+		*(string + j) = *(str + j);
 	}
-		str2[len2 + 1] = str[len2 + 1];
-	return (str2);
+	return (string);
 }

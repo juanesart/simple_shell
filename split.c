@@ -5,7 +5,7 @@ char *split(char *name, list_t **head)
 	char *dup;
 	size_t i;
 	char *args = NULL;
-	dup = malloc(strlen(name));
+	dup = malloc(strlen(name) + 1);
 	if (dup == NULL)
 		return (0);
 	strcpy(dup, name);
