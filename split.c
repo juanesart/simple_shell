@@ -19,7 +19,8 @@ char *split(char *name, list_t **head)
 		token = strtok(NULL, ": \t");
 		add_node(&head, args);
 		i++;
+		free(args);
 	}
 free(dup);
-return (args);
+return (NULL);
 }
