@@ -14,17 +14,14 @@ void _free(char **string)
 	free(string);
 }
 
-
 int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **env)
 {
-	
 	size_t strsize = 0; /*variabe to getline int size type*/
 	pid_t child_pid; /*variable to fork*/
 	int status, sw, aw = 0;  /*variable to wait*/
 	char *aux, *temp, **savingtok = NULL, *string = NULL;
 	struct stat st;
 	list_t *h = NULL, *auxh = NULL, *hreset = NULL;
-
 	h = _getenv(env, h);
 	printf("$ ");
 	while (getline(&string, &strsize, stdin) != EOF)
@@ -40,7 +37,6 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 		while (h)
 		{
 			temp = auxh->str;
-
 			if (aux != NULL)
 			{
 				if (*aux == '/')
@@ -93,7 +89,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 	/* free(temp); */
 	/* free_list(hreset); */
 	free_list(h);
+	free_list(auxh);
 	free(string);
-	_free(savingtok);
 	return (0);
 }

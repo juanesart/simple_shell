@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 void free_list(list_t *head)
 {
 	if (head)
@@ -10,11 +9,9 @@ void free_list(list_t *head)
 		free(head);
 	}
 }
-
 size_t print_list(const list_t *h)
 {
 	int count = 0;
-
 	while (h)
 	{
 		if (h->str == NULL)
@@ -30,33 +27,27 @@ size_t print_list(const list_t *h)
 	}
 	return (count);
 }
-
 list_t *add_node2(list_t **head, const char *str)
 {
 	list_t *add;
-
 	add = malloc(sizeof(list_t));
 	if (add == NULL)
 		return (NULL);
-	add->str = _strdup(str);
+	add->str = strdup(str);
 	add->len = strlen(str);
 	add->next = *head;
 	*head = add;
-
 	return (add);
 }
-
 list_t *add_node(list_t ***head, const char *str)
 {
 	list_t *add;
-
 	add = malloc(sizeof(list_t));
 	if (add == NULL)
 		return (NULL);
-	add->str = _strdup(str);
+	add->str = strdup(str);
 	add->len = strlen(str);
 	add->next = **head;
 	**head = add;
-
 	return (add);
 }
