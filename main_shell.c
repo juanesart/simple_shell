@@ -94,5 +94,6 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 	/* free_list(hreset); */
 	free_list(h);
 	free(string);
+	_free(savingtok);
 	return (0);
 }

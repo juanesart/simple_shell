@@ -14,7 +14,7 @@ char *split(char *name, list_t **head)
 	i = 0;
 	while (token)
 	{
-		args = strdup(token);
+		args = _strdup(token);
 		strcat(args, "/");
 		token = strtok(NULL, ": \t");
 		add_node(&head, args);

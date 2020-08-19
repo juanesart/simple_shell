@@ -12,27 +12,28 @@ char** tokens(char *string, char *temp)
         if (*string == '/')
         {
                 tmp = string;
-                token = strdup(tmp);
+                token = _strdup(tmp);
         }
         else
         {
-	        tmp = strcat(temp, string);
-                token = strdup(tmp);
+	        tmp = _strcat(temp, string);
+                token = _strdup(tmp);
         }
-	tmp = strtok(tmp, " \n\t");
+	tmp = _strtok(tmp, " \n\t");
+	free(token);
 	while (tmp != NULL)
 	{
 		ntok++;
-		tmp = strtok(NULL, " \n\t");
+		tmp = _strtok(NULL, " \n\t");
 	}
 
 	savingtok = (char **) malloc((ntok * sizeof(char *) + 1));
-	token = strtok(token, " \n\t");
+	token = _strtok(token, " \n\t");
 	while (token != NULL)
 	{
-		savingtok[i] = strdup(token);
+		savingtok[i] = _strdup(token);
 		i++;
-		token = strtok(NULL, " \n\t");
+		token = _strtok(NULL, " \n\t");
 	}
 	savingtok[ntok + 1] = '\0';
 

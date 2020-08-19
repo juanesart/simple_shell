@@ -35,6 +35,7 @@ void _free(char **string);
 char *_strcat(char *dest, char *src);
 char *_strncpy(char *dest, char *src, int n);
 int _strcmp(char *s1, char *s2);
+char *_strdup(const char *str);
 char *_strtok(char *str, const char *delim);
 char** tokens(char *string, char *temp);
 list_t *_getenv(char **env, list_t *h);
