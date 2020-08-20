@@ -1,16 +1,18 @@
 #include "holberton.h"
-list_t *_getenv(list_t *h)
+char *_getenv(char *name)
 {
-        char *path = "PATH=";
-        unsigned int i = 0, j = 0;
-while (environ[i] != NULL)
+	int i = 0;
+	char *ret;
+
+	while (environ[i] != NULL)
 	{
-		if (*environ[i] == path[j])
+		ret = strtok(environ[i], "=");
+		if (_strcmp(ret,name) == 0)
 		{
-			split(environ[i], &h);
+			ret = strtok(NULL, "\0");
 			break;
 		}
 		i++;
 	}
-return (h);
+	return (ret);
 }

@@ -37,9 +37,10 @@ char *_strdup(const char *str);
 int _strcmp(char *s1, char *s2);
 char *_strtok(char *str, const char *delim);
 char** tokens(char *string);
-list_t *_getenv(list_t *h);
+char *_getenv(char *name);
 int fork_process(pid_t child_pid, char *string, char **savingtok);
 int command_D(int ret, char *string);
-char *_which(char *str1, char *str2);
+char *_cont(char *str1, char *str2);
 int _path(char **argv);
+
 #endif

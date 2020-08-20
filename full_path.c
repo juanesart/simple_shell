@@ -2,36 +2,32 @@
 
 int _path(char **argv)
 {
-	list_t *h = NULL;
+	char *path = NULL;
 	char *str = NULL;
-        char *tmp = NULL;
 	struct stat st;
+	unsigned int i;
 
-	h = _getenv(h);
-        /* print_list(h); */
-
-	while (h)
+	path = _getenv("PATH");
+	path = strtok(path, ":");
+	i = 0;
+	while (path != NULL)
 	{
-                tmp = h->str;
-		str = _which(tmp, argv[0]);
-                printf("%s", str);
+		str = _cont(path, argv[0]);
 		if (stat(str, &st) == 0)
 		{
-			argv[0] = str;
+			argv[0] = _strdup(str);
 			break;
 		}
-		h = h->next;
-                /* free(str); */
+		path = strtok(NULL, ":");
+		i++;
 	}
-        /* free_list(h); */
-	/* free(str); */
+	free(str);
 	if (execve(argv[0], argv, NULL) == -1)
 		return (-1);
-        free(str);       
 	return (0);
 }
 
-char *_which(char *str1, char *str2)
+char *_cont(char *str1, char *str2)
 {
 	int len1, len2, i = 0, b = 0;
 	char *newstr;
@@ -45,6 +41,8 @@ char *_which(char *str1, char *str2)
 		newstr[i] = str1[i];
 		i++;
 	}
+        newstr[i] = '/';
+	i++;
 	while (str2[b] != '\0')
 	{
 		newstr[i] = str2[b];
