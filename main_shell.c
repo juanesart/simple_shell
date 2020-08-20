@@ -14,20 +14,48 @@ void _free(char **string)
 	free(string);
 }
 
-int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **env)
+int command_D(int ret, char *string)
 {
-	size_t strsize = 0; /*variabe to getline int size type*/
-	pid_t child_pid; /*variable to fork*/
-	int sw, aw = 0;  /*variable to wait*/
-	char *aux, *temp, **savingtok = NULL, *string = NULL;
-	struct stat st;
-	list_t *h = NULL, *auxh = NULL, *hreset = NULL;
-	h = _getenv(env, h);
-	printf("$ ");
-	while (getline(&string, &strsize, stdin) != EOF)
+	if (ret < 0)
 	{
-		aux = _strtok(string, "\n");
-		hreset = h;
+		if (isatty(0) == 1)
+			write(1, "\n", 1);
+		free(string);
+		exit(EXIT_FAILURE);
+	}
+	else
+		return (1);
+}
+
+int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
+{
+	size_t MaxSize = INT_MAX; /*variabe to getline int size type*/
+	pid_t child_pid; /*variable to fork*/
+	int input;  /*variable to wait*/
+	char **savingtok = NULL, *string = NULL, *ext = "exit\n";
+	/* struct stat st; */
+	/* list_t *h = NULL, *auxh = NULL, *hreset = NULL; */
+	/*h = _getenv(env, h); 
+	printf("$ "); */
+	while (1)
+	{
+                if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "#$ ", 3);
+                input = getline(&string, &MaxSize, stdin);
+                command_D(input, string);
+                if (_strcmp(string, ext) == 0)
+		{
+			free(string);
+			exit(EXIT_SUCCESS);
+		}
+                child_pid = fork();
+                if (fork_process(child_pid, string, savingtok) == -1)
+                {
+                        _free(savingtok);
+			exit(EXIT_FAILURE);
+                }
+		/* aux = _strtok(string, "\n"); */
+		/* hreset = h;
 		while (h)
 		{
 			add_node2(&auxh, h->str);
@@ -65,11 +93,10 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 		}
 		aw = 0, sw = 0;
 		sw = 0;
-		h = hreset;
-		printf("$ ");
+		h = hreset; */
 	}
-        _free(savingtok);
-        free_list(h);
+        /* _free(savingtok); */
+        /* free_list(h); */
 	free(string);
 	return (0);
 }

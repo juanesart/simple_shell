@@ -1,6 +1,6 @@
 #include "holberton.h"
 
-int fork_process(pid_t child_pid, char **savingtok)
+int fork_process(pid_t child_pid, char *string, char **savingtok)
 {
 	if (child_pid == -1)
 	{
@@ -9,11 +9,10 @@ int fork_process(pid_t child_pid, char **savingtok)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(savingtok[0], savingtok, NULL) == -1)
-		{
-			perror("execve: error");
-			exit(EXIT_FAILURE);
-		}
+                savingtok = tokens(string);
+                if (_path(savingtok) == -1)
+                        return(-1);
+		
 	}
 	else
 	{

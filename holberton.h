@@ -8,6 +8,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <limits.h>
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
@@ -23,6 +24,7 @@ typedef struct list_s
 	unsigned int len;
 	struct list_s *next;
 } list_t;
+extern char **environ;
 size_t print_list(const list_t *h);
 list_t *add_node(list_t ***head, const char *str);
 char *split(char *name, list_t **head);
@@ -34,7 +36,10 @@ char *_strncpy(char *dest, char *src, int n);
 char *_strdup(const char *str);
 int _strcmp(char *s1, char *s2);
 char *_strtok(char *str, const char *delim);
-char** tokens(char *string, char *temp);
-list_t *_getenv(char **env, list_t *h);
-int fork_process(pid_t child_pid, char **savingtok);
+char** tokens(char *string);
+list_t *_getenv(list_t *h);
+int fork_process(pid_t child_pid, char *string, char **savingtok);
+int command_D(int ret, char *string);
+char *_which(char *str1, char *str2);
+int _path(char **argv);
 #endif

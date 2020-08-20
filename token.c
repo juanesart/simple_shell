@@ -1,5 +1,5 @@
 #include "holberton.h"
-char** tokens(char *string, char *temp)
+char** tokens(char *string)
 {
 	char **savingtok = NULL;
 	char *token = NULL;
@@ -7,16 +7,8 @@ char** tokens(char *string, char *temp)
 	char *tmp = NULL;
         if (string == NULL)
                 return (NULL);
-        if (*string == '/')
-        {
-                tmp = string;
-                token = _strdup(tmp);
-        }
-        else
-        {
-	        tmp = strcat(temp, string);
-                token = _strdup(tmp);
-        }
+        tmp = string;
+        token = _strdup(tmp);
 	tmp = _strtok(tmp, " \n\t");
 	while (tmp != NULL)
 	{
