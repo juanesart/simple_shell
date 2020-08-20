@@ -1,5 +1,11 @@
 #include "holberton.h"
-
+/**
+ * _path - find the path of shell programs
+ * in PATH env variable
+ * @argv: input token arguments
+ * Return: 0 on success,
+ * -1 if command doesn't found
+ */
 int _path(char **argv)
 {
 	char *path = NULL;
@@ -26,6 +32,12 @@ int _path(char **argv)
 		return (-1);
 	return (0);
 }
+/**
+ * _cont - concat the path and commad
+ * @str1: path
+ * @str2: Command
+ * Return: Array of complete path of the command
+ */
 
 char *_cont(char *str1, char *str2)
 {
@@ -41,7 +53,7 @@ char *_cont(char *str1, char *str2)
 		newstr[i] = str1[i];
 		i++;
 	}
-        newstr[i] = '/';
+	newstr[i] = '/';
 	i++;
 	while (str2[b] != '\0')
 	{

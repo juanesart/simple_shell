@@ -8,6 +8,7 @@
 char *_strcat(char *dest, char *src)
 {
 	int i, j;
+
 	i = 0;
 	j = 0;
 	while (dest[i] != '\0')
@@ -26,6 +27,7 @@ char *_strcat(char *dest, char *src)
 char *_strncpy(char *dest, char *src, int n)
 {
 	int i;
+
 	i = 0;
 	while (i != n)
 	{
@@ -49,6 +51,7 @@ char *_strncpy(char *dest, char *src, int n)
 int _strcmp(char *s1, char *s2)
 {
 	int i;
+
 	i = 0;
 	while (s1[i] != '\0' || s2[i] != '\0')
 	{
@@ -58,21 +61,29 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
+/**
+ * _strtok - tokenize a string
+ * @str : a string to tokenize
+ * @delim : delimitate for tokens
+ * Return: token
+ */
 char *_strtok(char *str, const char *delim)
 {
 	static char *aux;
 	int ch;
+
 	if (str == 0)
-	str = aux;
+		str = aux;
 	do {
-	if ((ch = *str++) == '\0') 
-		return 0;
+	ch = *str++;
+	if (ch == '\0')
+		return (0);
 	} while (strchr(delim, ch));
 	--str;
-	aux = str + strcspn(str, delim); 
-	if (*aux != 0) 
-		*aux++ = 0; 
-	return str; 
+	aux = str + strcspn(str, delim);
+	if (*aux != 0)
+		*aux++ = 0;
+	return (str);
 }
 /**
 *_strdup - string duplicate.

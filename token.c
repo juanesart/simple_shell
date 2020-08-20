@@ -1,14 +1,20 @@
 #include "holberton.h"
-char** tokens(char *string)
+/**
+ * tokens - divide the string into tokens
+ * @string: input string saved in getline
+ * Return: double pointer
+ */
+char **tokens(char *string)
 {
 	char **savingtok = NULL;
 	char *token = NULL;
 	int i = 0, ntok = 0;
 	char *tmp = NULL;
-        if (string == NULL)
-                return (NULL);
-        tmp = string;
-        token = _strdup(tmp);
+
+	if (string == NULL)
+		return (NULL);
+	tmp = string;
+	token = _strdup(tmp);
 	tmp = _strtok(tmp, " \n\t");
 	while (tmp != NULL)
 	{
@@ -27,8 +33,3 @@ char** tokens(char *string)
 	free(token);
 	return (savingtok);
 }
-
-
-
-
-
