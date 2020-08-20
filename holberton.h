@@ -31,7 +31,7 @@ char *_strncpy(char *dest, char *src, int n);
 char *_strdup(const char *str);
 int _strcmp(char *s1, char *s2);
 char *_strtok(char *str, const char *delim);
-char** tokens(char *string);
+char **tokens(char *string);
 char *_getenv(char *name);
 int fork_process(pid_t child_pid, char *string, char **savingtok);
 int command_D(int ret, char *string);
