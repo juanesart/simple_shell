@@ -19,10 +19,6 @@ int fork_process(pid_t child_pid, char *string, char **savingtok)
 		if (_path(savingtok) == -1)
 			return (-1);
 	}
-	else
-	{
-		wait(NULL);
-	}
 	return (0);
 }
 /**

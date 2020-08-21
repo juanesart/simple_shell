@@ -10,6 +10,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
 	size_t MaxSize = 1024;
 	pid_t child_pid; /*variable to fork*/
+	int status;
 	int input = 0;
 	char **savingtok = NULL, *string = NULL, *ext = "exit\n";
 	char *val = "\n";
@@ -34,6 +35,12 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			write(1, "command not found\n", 18);
 			_free(savingtok);
 			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			wait(&status);
+			if (isatty(STDIN_FILENO) == 0)
+				exit(EXIT_SUCCESS);
 		}
 	}
 	free(string);
