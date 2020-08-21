@@ -43,7 +43,7 @@ It will open a shell prompt and it will look like this
 
 You are on the shell and it is waiting for you to type and execute a command. Next you will see a list of commands. it will show you how you can exit the shell. You can use either one of these commands:
 
-    Saroco83-dalejoroc11 $ exit
+    #$ exit
     
 Or you can also do Ctrl + D And this will also terminate the simple shell.
 
