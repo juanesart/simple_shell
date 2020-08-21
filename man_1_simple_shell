@@ -1,0 +1,38 @@
+.TH man 1 "21 August 2020 " "0.32" "Juan and Marcos simple_shell man page"
+.SH NAME
+.B Juan and Marcos simple_shell
+- We built a simple shell.
+.SH SYNOPSIS
+Simple unix command interpreter that provides a user interface to access the kernel of the operating system.
+.SH
+.SH
+.SH DESCRIPTION
+we use the following files to build our own simple shell:
+.PP -1.0.fork_process.c Write a program that validates through a loop whatever is in the getline.
+.PP -1.1.full_path.c - Write a shell script that makes the call to getenv.c and concatenates path with the command.
+.PP-2.0.get_env.c - Gets the environment variables.
+.PP-2.1.str_functions.c - Auxiliary functions of the string.h library.
+.PP-2.2.token.c - (strtok) Write a function that splits a string and returns an array of each word of the string which is the environment and the command.
+.PP-generate-authors.sh and AUTHORS. . File man_1_simple_shell - Manual for our simple shell
+
+
+.SH RETURN VALUE
+.SH Our Shell must return the execution in standard output of the command typed by the user
+If the command doesn't exist, say "command not found".
+.SH EXAMPLES TEST
+we compare with write function the next examples:
+.SH
+.SH Examples
+.SH
+.SH
+.SH
+.SH
+.SH Results
+.SH
+.SH
+.SH
+.SH
+.SH ISSUES
+We have a issue in check #
+.SH AUTHORS
+Juan Arango, Marcos Pimienta
