@@ -31,7 +31,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		child_pid = fork();
 		if (fork_process(child_pid, string, savingtok) == -1)
 		{
-			write(2, string, strlen(string));
+			write(2, string, _strlen(string));
 			write(1, "command not found\n", 18);
 			_free(savingtok);
 			exit(EXIT_FAILURE);

@@ -37,5 +37,6 @@ int fork_process(pid_t child_pid, char *string, char **savingtok);
 int command_D(int ret, char *string);
 char *_cont(char *str1, char *str2);
 int _path(char **argv);
+int _strlen(char *s);
 
 #endif

@@ -44,8 +44,8 @@ char *_cont(char *str1, char *str2)
 	int len1, len2, i = 0, b = 0;
 	char *newstr;
 
-	len1 = strlen(str1);
-	len2 = strlen(str2);
+	len1 = _strlen(str1);
+	len2 = _strlen(str2);
 
 	newstr = malloc((len1 + len2) + 1);
 	while (str1[i] != '\0')
