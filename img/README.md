@@ -1,0 +1,1 @@
+this folder contains images for the README.md of the shell
